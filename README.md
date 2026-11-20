@@ -38,7 +38,7 @@ Docker Compose runs PostgreSQL 16 in a container named `hotel-postgres`, with a 
 
 On Windows/WSL, a D: drive project path is available as:
 ```bash
-cd /mnt/d/terraform-db-assessment
+cd /mnt/d/Terraform_Database-Reliability
 ```
 
 ## Quick start
@@ -46,7 +46,7 @@ cd /mnt/d/terraform-db-assessment
 ### 1. Clone
 ```bash
 git clone <YOUR_REPOSITORY_URL>
-cd terraform-db-assessment
+cd Terraform_Database-Reliability
 ```
 If already cloned, simply enter the project directory.
 
