@@ -1,0 +1,10 @@
+variable "name" { type = string }
+variable "vpc_id" { type = string }
+variable "public_subnet_ids" { type = list(string) }
+variable "app_subnet_ids" { type = list(string) }
+variable "alb_sg_id" { type = string }
+variable "ecs_sg_id" { type = string }
+variable "cpu" { type = string }
+variable "memory" { type = string }
+variable "desired_count" { type = number }
+variable "image" { type = string }

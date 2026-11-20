@@ -1,0 +1,8 @@
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*.plan
+.env
+backups/*.dump
+backups/*.sql

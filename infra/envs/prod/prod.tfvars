@@ -1,0 +1,15 @@
+region              = "ap-south-1"
+name                = "hotel-prod"
+vpc_cidr            = "10.20.0.0/16"
+azs                 = ["ap-south-1a", "ap-south-1b"]
+ecs_cpu             = "512"
+ecs_memory          = "1024"
+ecs_desired_count   = 2
+container_image     = "nginx:latest"
+rds_instance_class  = "db.t3.small"
+rds_storage_gb      = 50
+db_name             = "hotelbooking"
+db_username         = "dbadmin"
+db_password         = "ChangeMe-Prod-123!"
+backup_retention    = 7
+deletion_protection = true
