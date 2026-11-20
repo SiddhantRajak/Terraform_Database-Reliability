@@ -1,28 +1,53 @@
 name: Terraform validation
+
 on:
   pull_request:
     paths:
       - "infra/**"
       - ".github/workflows/terraform.yml"
+
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
       - "infra/**"
+      - ".github/workflows/terraform.yml"
+
 jobs:
   validate:
+    name: Terraform - ${{ matrix.env }}
     runs-on: ubuntu-latest
+
     strategy:
+      fail-fast: false
       matrix:
         env: [dev, prod]
+
     defaults:
       run:
         working-directory: infra/envs/${{ matrix.env }}
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.8.5
-      - run: terraform fmt -check -recursive
-      - run: terraform init
-      - run: terraform validate
-      - run: terraform plan -refresh=false -var-file=${{ matrix.env }}.tfvars
+
+      - name: Terraform format check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform plan
+        env:
+          AWS_ACCESS_KEY_ID: dummy
+          AWS_SECRET_ACCESS_KEY: dummy
+          AWS_EC2_METADATA_DISABLED: "true"
+        run: terraform plan -refresh=false -var-file=${{ matrix.env }}.tfvars
